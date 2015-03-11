@@ -1,5 +1,5 @@
 local spp = require('spp_lua')
-local parser = spp.new()
+local parser = spp:new()
 
 parser:feed("2\nok\n4\nbody\n\n")
 

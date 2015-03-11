@@ -11,8 +11,6 @@
 extern "C" {
 #endif
 
-#define luaL_register
-
 static void
 parser_handler(struct spp_st *parser, char *s, size_t len, int idx)
 {
