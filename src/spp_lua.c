@@ -34,15 +34,52 @@ parser_feed(lua_State *L)
 {
     spp_t **udata = (spp_t **)(luaL_checkudata(L, 1, "spp_parser"));
     spp_t *parser = *udata;
+
     const char *input = luaL_checkstring(L, 2);
+
     if (spp_feed(parser, (char *)input) != SPP_OK)
-        luaL_error(L, "No memory to feed data");
-    hbuf_print(parser->buf);
+        luaL_error(L, "No memory");
+    return 0;
+}
+
+static int
+parser_get(lua_State *L)
+{
+    spp_t **udata = (spp_t **)(luaL_checkudata(L, 1, "spp_parser"));
+    spp_t *parser = *udata;
+
+    int result = spp_parse(parser);
+
+    switch(result) {
+        case SPP_OK:
+            lua_pushnumber(L, result);
+            break;
+        case SPP_ENOMEM:
+            luaL_error(L, "No memory");
+            break;
+        case SPP_EBADFMT:
+            luaL_error(L, "Bad format");
+            break;
+        case SPP_EUNFINISH:
+            lua_pushnil(L);
+            break;
+    }
+    return 1;
+}
+
+static int
+parser_dealloc(lua_State *L)
+{
+    spp_t **udata = (spp_t **)(luaL_checkudata(L, 1, "spp_parser"));
+    spp_t *parser = *udata;
+    spp_free(parser);
     return 0;
 }
 
 static const struct luaL_Reg spp_parser_methods[] = {
     {"feed", parser_feed},
+    {"get", parser_get},
+    {"__gc", parser_dealloc},
     {NULL, NULL}
 };
 
