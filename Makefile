@@ -1,6 +1,6 @@
 CC= gcc -std=gnu99
 CFLAGS= -O2 -Wall -fPIC -shared 
-LIBS= -llua
+LIBS= -llua -lm
 SRC= src/*.c
 OUT= -o spp_lua.so
 

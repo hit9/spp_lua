@@ -11,10 +11,15 @@
 extern "C" {
 #endif
 
-static void
-parser_handler(struct spp_st *parser, char *s, size_t sz, int idx)
-{
+#define luaL_register
 
+static void
+parser_handler(struct spp_st *parser, char *s, size_t len, int idx)
+{
+    lua_State *L = (lua_State *)parser->priv;
+    lua_pushinteger(L, idx + 1);
+    lua_pushlstring(L, (const char *)s, len);
+    lua_settable(L, -3);
 }
 
 static int
@@ -48,11 +53,13 @@ parser_get(lua_State *L)
     spp_t **udata = (spp_t **)(luaL_checkudata(L, 1, "spp_parser"));
     spp_t *parser = *udata;
 
+    parser->priv = (void *)L;
+    lua_createtable(L, 0, 0);
+
     int result = spp_parse(parser);
 
     switch(result) {
         case SPP_OK:
-            lua_pushnumber(L, result);
             break;
         case SPP_ENOMEM:
             luaL_error(L, "No memory");
@@ -95,13 +102,7 @@ luaopen_spp_lua(lua_State *L)
     lua_pushvalue(L, -1);
     lua_setfield(L, -2, "__index");
     luaL_setfuncs(L, spp_parser_methods, 0);
-
-    if (LUA_VERSION_NUM <= 501) {
-        luaL_register(L, "spp_lua", spp_lua_funcs);
-    } else {
-        lua_newtable(L);
-        luaL_setfuncs(L, spp_lua_funcs, 0);
-    }
+    luaL_newlib(L, spp_lua_funcs);
     return 1;
 }
 #ifdef __cplusplus
