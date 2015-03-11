@@ -6,8 +6,8 @@ be used on other projects.*
 
 Support Lua5.1/Lua5.2/Lua5.3
 
-Nodejs Port: https://github.com/hit9/spp_node
-Python Port: https://github.com/hit9/spp_py
+- Nodejs Port: https://github.com/hit9/spp_node
+- Python Port: https://github.com/hit9/spp_py
 
 Protocol
 --------
