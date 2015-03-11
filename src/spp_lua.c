@@ -73,6 +73,15 @@ parser_get(lua_State *L)
 }
 
 static int
+parser_clear(lua_State *L)
+{
+    spp_t **udata = (spp_t **)(luaL_checkudata(L, 1, "spp_parser"));
+    spp_t *parser = *udata;
+    spp_clear(parser);
+    return 0;
+}
+
+static int
 parser_dealloc(lua_State *L)
 {
     spp_t **udata = (spp_t **)(luaL_checkudata(L, 1, "spp_parser"));
@@ -84,6 +93,7 @@ parser_dealloc(lua_State *L)
 static const struct luaL_Reg spp_parser_methods[] = {
     {"feed", parser_feed},
     {"get", parser_get},
+    {"clear", parser_clear},
     {"__gc", parser_dealloc},
     {NULL, NULL}
 };
