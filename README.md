@@ -74,6 +74,11 @@ API Ref
 - parser:get()
 - parser:clear()
 
+Bench
+-----
+
+    100000 in 5.257834s => 19019.238721ops
+
 License
 -------
 
