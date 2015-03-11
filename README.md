@@ -77,7 +77,12 @@ API Ref
 Bench
 -----
 
-    100000 in 5.257834s => 19019.238721ops
+```
+spp parser: 60000 in 2.000000s => 30000.000000ops
+lua parser: 60000 in 18.000000s => 3333.333333ops
+```
+
+PS: Nodejs is much more faster on this job, close to C speed.
 
 License
 -------
