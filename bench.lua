@@ -3,7 +3,7 @@ local parser = spp:new()
 
 n = 100000
 
-start_at = os.clock()
+start_at = os.time()
 
 for i = 0, n do
     local s = tostring(i)
@@ -16,7 +16,7 @@ for i = 0, n do
     assert(t[2] == tostring(i))
 end
 
-end_at = os.clock()
+end_at = os.time()
 
 print(string.format('%d in %fs => %fops', n, 
 end_at - start_at, n / (end_at - start_at)))
