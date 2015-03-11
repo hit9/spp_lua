@@ -47,7 +47,7 @@ easy to do.
 
 Parsing example:
 
-```js
+```lua
 local spp = require('spp_lua')
 local parser = spp:new()
 
