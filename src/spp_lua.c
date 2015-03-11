@@ -99,8 +99,13 @@ luaopen_spp_lua(lua_State *L)
     luaL_newmetatable(L, "spp_parser");
     lua_pushvalue(L, -1);
     lua_setfield(L, -2, "__index");
+#if LUA_VERSION_NUM == 501
     luaL_register(L, NULL, spp_parser_methods);
     luaL_register(L, "spp_lua", spp_lua_funcs);
+#else
+    luaL_setfuncs(L, spp_parser_methods, 0);
+    luaL_newlib(L, spp_lua_funcs);
+#endif
     return 1;
 }
 #ifdef __cplusplus
