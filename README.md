@@ -78,11 +78,9 @@ Bench
 -----
 
 ```
-spp parser: 60000 in 2.000000s => 30000.000000ops
-lua parser: 60000 in 18.000000s => 3333.333333ops
+spp parser: 500000 in 2.000000s => 250000.000000ops
+lua parser: 500000 in 4.000000s => 125000.000000ops
 ```
-
-PS: Nodejs is much faster on this job, close to C speed.
 
 License
 -------

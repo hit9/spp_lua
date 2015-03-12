@@ -1,7 +1,7 @@
 local spp = require('spp_lua')
 local parser = spp:new()
 
-n = 60000
+n = 500000
 
 ---------------------- SPP Implemetation ---------------
 start_at = os.time()
@@ -9,9 +9,6 @@ start_at = os.time()
 for i = 0, n do
     local s = tostring(i)
     parser:feed(string.format('2\nok\n%d\n%s\n\n', #s, s))
-end
-
-for i = 0, n do
     local t = parser:get()
     assert(t[1] == 'ok')
     assert(t[2] == tostring(i))
@@ -90,9 +87,6 @@ start_at = os.time()
 for i = 0, n do
     local s = tostring(i)
     parser:feed(string.format('2\nok\n%d\n%s\n\n', #s, s))
-end
-
-for i = 0, n do
     local t = parser:get()
     assert(t[1] == 'ok')
     assert(t[2] == tostring(i))
