@@ -105,8 +105,9 @@ static const struct luaL_Reg spp_lua_funcs[] = {
 
 int
 #ifdef SPP_LIB_PATH
-#define OPEN_FUNC_NAME luaopen_##SPP_LIB_PATH
-OPEN_FUNC_NAME(lua_State *L)
+#define _CONCAT(A, B) A ## B
+#define _FUNC_NAME(PATH) _CONCAT(luaopen_, PATH)
+_FUNC_NAME(SPP_LIB_PATH)(lua_State *L)
 #else
 luaopen_spp_lua(lua_State *L)
 #endif
