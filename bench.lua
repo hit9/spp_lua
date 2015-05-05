@@ -81,7 +81,7 @@ function Parser.get(self)
     end
 end
 
-local parser = Parser.new()
+local parser = Parser:new()
 start_at = os.time()
 
 for i = 0, n do
