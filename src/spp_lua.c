@@ -104,8 +104,9 @@ static const struct luaL_Reg spp_lua_funcs[] = {
 };
 
 int
-#ifdef RESTY
-luaopen_resty_ssdb_spp_lua(lua_State *L)
+#ifdef SPP_LIB_PATH
+#define OPEN_FUNC_NAME luaopen_##SPP_LIB_PATH
+OPEN_FUNC_NAME(lua_State *L)
 #else
 luaopen_spp_lua(lua_State *L)
 #endif

@@ -41,7 +41,7 @@ $ make
 To build for `resty`:
 
 ```bash
-$ DFLAGS='-D "RESTY=1"' make
+$ DFLAGS='-D "SPP_LIB_PATH=resty_ssdb_spp_lua"' make
 ```
 
 Usage
