@@ -16,7 +16,7 @@ endif
 
 build:
 	$(CC) -c $(SRC)
-	$(CC) $(CFLAGS) $(SRC) -o $(DLIB)
+	$(CC) $(CFLAGS) $(DFLAGS) $(SRC) -o $(DLIB)
 
 clean:
 	rm $(DLIB) $(OBJS)

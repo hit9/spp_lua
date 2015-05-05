@@ -38,6 +38,12 @@ Build
 $ make 
 ```
 
+To build for `resty`:
+
+```bash
+$ DFLAGS='-D "RESTY=1"' make
+```
+
 Usage
 -----
 

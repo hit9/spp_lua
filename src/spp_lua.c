@@ -104,7 +104,11 @@ static const struct luaL_Reg spp_lua_funcs[] = {
 };
 
 int
+#ifdef RESTY
+luaopen_resty_ssdb_spp_lua(lua_State *L)
+#else
 luaopen_spp_lua(lua_State *L)
+#endif
 {
     luaL_newmetatable(L, "spp_parser");
     lua_pushvalue(L, -1);
