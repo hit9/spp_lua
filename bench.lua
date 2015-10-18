@@ -4,7 +4,7 @@ local parser = spp:new()
 n = 500000
 
 ---------------------- SPP Implemetation ---------------
-start_at = os.time()
+start_at = os.clock()
 
 for i = 0, n do
     local s = tostring(i)
@@ -14,7 +14,7 @@ for i = 0, n do
     assert(t[2] == tostring(i))
 end
 
-end_at = os.time()
+end_at = os.clock()
 
 print(string.format('spp parser: %d in %fs => %fops', n,
 end_at - start_at, n / (end_at - start_at)))
@@ -82,7 +82,7 @@ function Parser.get(self)
 end
 
 local parser = Parser:new()
-start_at = os.time()
+start_at = os.clock()
 
 for i = 0, n do
     local s = tostring(i)
@@ -92,7 +92,7 @@ for i = 0, n do
     assert(t[2] == tostring(i))
 end
 
-end_at = os.time()
+end_at = os.clock()
 
 print(string.format('lua parser: %d in %fs => %fops', n,
 end_at - start_at, n / (end_at - start_at)))
