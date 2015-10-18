@@ -39,8 +39,13 @@ parser_feed(lua_State *L)
     spp_t *parser = *udata;
 
     const char *input = luaL_checkstring(L, 2);
+#if LUA_VERSION_NUM >= 502
+    size_t size = lua_rawlen(L, 2);
+#else
+    size_t size = lua_objlen(L, 2);
+#endif
 
-    if (spp_feed(parser, (char *)input) != SPP_OK)
+    if (spp_feed(parser, (char *)input, size) != SPP_OK)
         luaL_error(L, "No memory");
     return 0;
 }
