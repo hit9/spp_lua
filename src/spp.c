@@ -43,9 +43,9 @@ spp_clear(spp_t *spp)
  * Feed a spp parser with data.
  */
 int
-spp_feed(spp_t *spp, char *data)
+spp_feed(spp_t *spp, char *data, size_t size)
 {
-    int res = hbuf_puts(spp->buf, data);
+    int res = hbuf_put(spp->buf, (uint8_t *)data, size);
 
     if (res == HBUF_ENOMEM)
         return SPP_ENOMEM;

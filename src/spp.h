@@ -47,7 +47,7 @@ typedef struct spp_st {
 
 /* Public API for the protocol parser */
 spp_t* spp_new();
-int spp_feed(spp_t *, char *);
+int spp_feed(spp_t *, char *, size_t);
 void spp_free(spp_t *);
 int spp_parse(spp_t *);
 void spp_clear(spp_t *);
